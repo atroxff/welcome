@@ -20,8 +20,8 @@ public class HelloController {
     private JdbcTemplate jdbcTemplate;
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public Object get() {
+    @RequestMapping(value = "/getwords",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public List<Word> get() {
         String sql = "select * from word order by sortid asc";
         RowMapper<Word> rowMapper=new BeanPropertyRowMapper<Word>(Word.class);
         List<Word> wordList = jdbcTemplate.query(sql, rowMapper);

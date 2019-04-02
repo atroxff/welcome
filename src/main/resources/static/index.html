@@ -233,7 +233,7 @@ _________________________________________________________ -->
             }
         });
 
-        $.getJSON('/welcome', {}, function (data) {
+        $.getJSON('/welcome/getwords', {}, function (data) {
             if (data != null) {
                  $.each(data, function (index, element) {
                      $('#welcome-word').append(
