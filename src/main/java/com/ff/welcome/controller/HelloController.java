@@ -14,13 +14,12 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(path = "/welcome")
 public class HelloController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/getwords",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    @RequestMapping(path = "/welcome",produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public List<Word> get() {
         String sql = "select * from word order by sortid asc";
         RowMapper<Word> rowMapper=new BeanPropertyRowMapper<Word>(Word.class);
