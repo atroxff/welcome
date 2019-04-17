@@ -19,6 +19,7 @@ public class HelloController {
     private JdbcTemplate jdbcTemplate;
 
     @RequestMapping(path = "/welcome", method = RequestMethod.GET)
+    @ResponseBody
     public Object get() {
         String sql = "select * from word order by sortid asc";
         RowMapper<Word> rowMapper=new BeanPropertyRowMapper<Word>(Word.class);
