@@ -18,9 +18,9 @@ public class HelloController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @ResponseStatus(HttpStatus.OK)
     @RequestMapping(path = "/welcome", method = RequestMethod.GET)
-    @ResponseBody
-    public Object get() {
+    public @ResponseBody List<Word> getWords() {
         String sql = "select * from word order by sortid asc";
         RowMapper<Word> rowMapper=new BeanPropertyRowMapper<Word>(Word.class);
         List<Word> wordList = jdbcTemplate.query(sql, rowMapper);
