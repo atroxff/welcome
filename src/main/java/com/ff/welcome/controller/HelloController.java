@@ -14,14 +14,15 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping(path = "/welcome")
 public class HelloController {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(path = "/welcome", method = RequestMethod.GET)
-    public @ResponseBody List<Word> getWords() {
+    @RequestMapping(value = "/{sortid}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    public @ResponseBody List<Word> get(@PathVariable String sortid) {
         String sql = "select * from word order by sortid asc";
         RowMapper<Word> rowMapper=new BeanPropertyRowMapper<Word>(Word.class);
         List<Word> wordList = jdbcTemplate.query(sql, rowMapper);
